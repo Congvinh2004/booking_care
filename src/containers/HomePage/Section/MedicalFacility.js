@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './MedicalFacility.scss'
 import specialtyImg from '../../../assets/speciatly/co-xuong.png'
+import { FormattedMessage } from 'react-intl';
 
 import Slider from 'react-slick';
 class MedicalFacility extends Component {
@@ -16,8 +17,16 @@ class MedicalFacility extends Component {
                 <div className='section-container'>
 
                     <div className='section-header'>
-                        <span className='title-section'>Cơ sở y tế nổi bật</span>
-                        <button className='btn-section'>Xem thêm</button>
+                        <span className='title-section'>
+
+                            <FormattedMessage id="homepage.outstanding-medical-facilities" />
+
+                        </span>
+                        <button className='btn-section'>
+
+                            <FormattedMessage id="homepage.more-information" />
+
+                        </button>
                     </div>
 
                     <div className='section-body'>

@@ -38,9 +38,8 @@ class About extends Component {
             <div className='section-share section-about'>
 
                 <div className='section-about-header'>
+                    <FormattedMessage id="homepage.about" />
 
-
-                    Truyền thông nói gì
 
                 </div>
                 <div className='section-about-content'>
@@ -48,9 +47,9 @@ class About extends Component {
                     <div className='content-left'>
                         <iframe width="588" height="330" src="https://www.youtube.com/embed/FyDQljKtWnI"
                             title="CÀ PHÊ KHỞI NGHIỆP VTV1 - BOOKINGCARE - HỆ THỐNG ĐẶT LỊCH KHÁM TRỰC TUYẾN"
-                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            referrerpolicy="strict-origin-when-cross-origin"
-                            allowfullscreen></iframe>
+                            frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+
+                            allowFullScreen></iframe>
                     </div>
 
                     <div className='content-right'>

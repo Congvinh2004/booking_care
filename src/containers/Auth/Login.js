@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { push } from "connected-react-router";
-
 import * as actions from "../../store/actions";
 import './Login.scss';
 import { FormattedMessage } from 'react-intl';
@@ -15,7 +14,8 @@ class Login extends Component {
             userName: '',
             password: '',
             isShowPassword: false,
-            errMessage: ''
+            errMessage: '',
+
         }
 
 
@@ -76,6 +76,7 @@ class Login extends Component {
         // else alert('0')
 
     }
+
     render() {
         let { userName, passWord, isShowPassword } = this.state
         return (

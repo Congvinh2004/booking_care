@@ -10,8 +10,8 @@ const getAllUsers = (inputId) => {
 
 
 const createNewUserService = (data) => {
-    console.log('check data from service: ', data)
 
+    console.log('check data from service: ', data)
     return axios.post('/api/create-new-user', data)
 
 
@@ -19,7 +19,6 @@ const createNewUserService = (data) => {
 
 const deleteUserService = (userId) => {
 
-    // return axios.delete('/api/delete-user', { id: userId })
     return axios.delete('/api/delete-user', {
         data: { id: userId }
     })
@@ -30,4 +29,11 @@ const editUserService = (data) => {
 
     return axios.put('/api/edit-user', data)
 }
-export { handleLoginApi, getAllUsers, createNewUserService, deleteUserService, editUserService }                                          
+const getAllCodeService = (inputType) => {
+    return axios.get(`/api/allcode?type=${inputType}`)
+}
+
+const getTopDoctorHomeService = (limit) => {
+    return axios.get(`/api/top-doctor-home?limit=${limit}`)
+}
+export { handleLoginApi, getAllUsers, createNewUserService, deleteUserService, editUserService, getAllCodeService, getTopDoctorHomeService }                                          
