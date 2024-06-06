@@ -76,7 +76,13 @@ class Login extends Component {
         // else alert('0')
 
     }
+    handleKeyDown = (event) => {
+        if (event.key === "Enter") {
+            this.handleOnclick();
 
+        }
+
+    }
     render() {
         let { userName, passWord, isShowPassword } = this.state
         return (
@@ -99,15 +105,11 @@ class Login extends Component {
                             <label>password:</label>
                             <div className='custom-input-password'>
                                 <input
-                                    type={isShowPassword
-                                        ?
-                                        'text'
-                                        :
-                                        'password'
-                                    }
+                                    type={isShowPassword ? 'text' : 'password'}
                                     className='form-control' placeholder='Enter your name'
                                     value={this.state.password}
                                     onChange={(event) => { this.handleOnchangePassword(event) }}
+                                    onKeyDown={(event) => this.handleKeyDown(event)}
                                 />
                                 <span onClick={() => { this.handleShowHidePassword() }}>
                                     {isShowPassword ?

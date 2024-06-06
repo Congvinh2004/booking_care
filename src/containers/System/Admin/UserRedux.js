@@ -44,7 +44,6 @@ class UserRedux extends Component {
         //             arrGender: res.data
         //         })
         //     }
-        //     console.log('check res: ', res)
         // } catch (e) {
         //     console.log(e)
         // }
@@ -214,7 +213,6 @@ class UserRedux extends Component {
 
 
     render() {
-        // console.log("check role: ", this.props.roleRedux)
         let language = this.props.language
         let { arrGender } = this.state
         let isGetGenders = this.props.isLoadingGender
