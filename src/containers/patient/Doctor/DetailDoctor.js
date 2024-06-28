@@ -5,11 +5,13 @@ import './DetailDoctor.scss'
 import { getDetailInforDoctor } from '../../../services/userService';
 import { lang } from 'moment';
 import { LANGUAGES } from '../../../utils';
+import DoctorSchedule from './DoctorSchedule';
 class DetailDoctor extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            detailDoctor: {}
+            detailDoctor: {},
+            currentDoctorId: -1
         }
     }
 
@@ -17,11 +19,15 @@ class DetailDoctor extends Component {
 
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
             let id = this.props.match.params.id;
+            this.setState({
+                currentDoctorId: id
+            })
             let res = await getDetailInforDoctor(id);
-            console.log('hoi dan it check res: ', res)
+            // console.log('hoi dan it check res: ', res)
             if (res && res.errCode === 0) {
                 this.setState({
-                    detailDoctor: res.data
+                    detailDoctor: res.data,
+                    currentDoctorId: id
                 })
             }
 
@@ -39,6 +45,7 @@ class DetailDoctor extends Component {
         let { language } = this.props
         let nameVi, nameEn = ''
         console.log('check state: ', this.state)
+
         if (detailDoctor && detailDoctor.positionData) {
             nameVi = `${detailDoctor.positionData.valueVi} ${detailDoctor.firstName} ${detailDoctor.lastName}`
             nameEn = `${detailDoctor.positionData.valueEn} ${detailDoctor.lastName} ${detailDoctor.firstName}`
@@ -74,7 +81,18 @@ class DetailDoctor extends Component {
                         </div>
 
                     }
-                    <div className='shedule-doctor'></div>
+                    <div className='schedule-doctor'>
+                        <div className='content-left'>
+                            <DoctorSchedule
+
+
+
+                                doctorIdFromParent={this.state.currentDoctorId}></DoctorSchedule>
+
+                        </div>
+                        <div className='content-right'></div>
+
+                    </div>
                     <div className='detail-infor-doctor'>
                         {detailDoctor && detailDoctor.Markdown && detailDoctor.Markdown.contentHTML
                             && <div dangerouslySetInnerHTML={{ __html: detailDoctor.Markdown.contentHTML }}></div>

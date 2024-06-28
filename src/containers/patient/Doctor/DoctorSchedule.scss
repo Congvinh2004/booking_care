@@ -1,0 +1,96 @@
+.doctor-schedule-container {
+    border-right: 1px solid #ddd;
+    height      : 100%;
+
+    .all-schedule {
+        padding: 20px 0 17px;
+
+        select {
+            border       : none;
+            border-bottom: 1px solid #999999;
+            outline      : none;
+            padding      : 5px 0;
+            font-size    : 14px !important;
+            font-weight  : 600;
+            color        : #337AB7;
+        }
+    }
+
+    .all-available-time {
+
+
+        .text-calendar {
+
+            padding-bottom: 15px;
+
+            span {
+                display       : flex;
+                gap           : 10px;
+                align-items   : center;
+                text-transform: uppercase;
+
+                div {
+
+                    display: inline;
+                }
+            }
+
+            div {
+                font-weight: 600;
+            }
+        }
+
+
+        .time-content {
+            .time-content-btns {
+                display  : flex;
+                flex-wrap: wrap;
+
+                button {
+
+                    height       : 40px;
+                    min-width    : 115px;
+                    margin-bottom: 5px;
+                    margin-right : 5px;
+                    border       : none;
+                    background   : #FFC10E;
+                    font-weight  : 600;
+                    box-sizing   : border-box;
+                    outline      : none;
+                    border-radius: 2px;
+
+                    &:hover {
+                        border: 2px solid #33b0e3;
+                    }
+                }
+
+                .no-calendar {
+                    padding-left: 5px;
+
+                    i {
+                        font-size: 16px;
+
+                    }
+                }
+            }
+
+            .book-free {
+
+                padding: 15px;
+
+
+
+                span {
+                    display    : flex;
+                    color      : #696868;
+                    align-items: center;
+                }
+
+                i {}
+
+            }
+        }
+    }
+
+
+}

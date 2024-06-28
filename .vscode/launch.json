@@ -10,6 +10,15 @@
             "name": "Launch Chrome against localhost",
             "url": "http://localhost:3000/system/user-redux",
             "webRoot": "${workspaceFolder}"
+        },
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "Launch Training Script",
+            "program": "${workspaceRoot}\\training-script.js",
+            "runtimeArgs": [
+                "--max-old-space-size=4096"
+            ]
         }
     ]
 }
