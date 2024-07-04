@@ -6,6 +6,7 @@ import { getDetailInforDoctor } from '../../../services/userService';
 import { lang } from 'moment';
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
+import DoctorExtrainfor from './DoctorExtrainfor';
 class DetailDoctor extends Component {
     constructor(props) {
         super(props);
@@ -90,7 +91,11 @@ class DetailDoctor extends Component {
                                 doctorIdFromParent={this.state.currentDoctorId}></DoctorSchedule>
 
                         </div>
-                        <div className='content-right'></div>
+                        <div className='content-right'>
+
+
+                            <DoctorExtrainfor doctorIdFromParent={this.state.currentDoctorId} />
+                        </div>
 
                     </div>
                     <div className='detail-infor-doctor'>
