@@ -7,6 +7,7 @@ import locallization from 'moment/locale/vi'
 import { getScheduleDoctorByDate } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
+import BookingModal from './Model/BookingModal';
 
 class DoctorSchedule extends Component {
     constructor(props) {
@@ -179,7 +180,7 @@ class DoctorSchedule extends Component {
                         </div>
                     </div>
                 </div>
-
+                <BookingModal />
             </>
         );
     }

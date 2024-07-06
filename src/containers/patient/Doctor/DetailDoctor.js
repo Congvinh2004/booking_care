@@ -45,7 +45,6 @@ class DetailDoctor extends Component {
         let { detailDoctor } = this.state
         let { language } = this.props
         let nameVi, nameEn = ''
-        console.log('check state: ', this.state)
 
         if (detailDoctor && detailDoctor.positionData) {
             nameVi = `${detailDoctor.positionData.valueVi} ${detailDoctor.firstName} ${detailDoctor.lastName}`

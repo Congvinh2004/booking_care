@@ -26,14 +26,25 @@
 
     .content-down {
         .short-infor {
-            span {
+            .see-detail {
                 cursor: pointer;
                 color : #357BB8;
+            }
+
+            .price-label {
+                text-transform: uppercase;
+                font-weight   : 600;
+            }
+
+            .currency {
+                margin: 0 5px;
             }
         }
 
         .title-price {
-            margin-bottom: 10px;
+            margin-bottom : 10px;
+            text-transform: uppercase;
+            font-weight   : 600;
         }
 
         .detail-infor {
@@ -49,13 +60,17 @@
                 }
             }
 
-            .note {}
+
         }
 
         .payment {
             border          : 1px solid #ddd;
             padding         : 5px;
             background-color: #eee;
+
+            .payment-label {
+                padding-bottom: 5px;
+            }
         }
 
         .hide-price {
