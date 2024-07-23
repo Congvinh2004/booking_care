@@ -81,6 +81,20 @@
             "detail": "See details",
             "payment": "Payment methods: ",
             "hide-price": "Hide price list"
+        },
+        "booking-modal": {
+            "title": "Information to book a medical  appointment",
+            "fullName": "Full name",
+            "phoneNumber": "Phone number",
+            "email": "Email address",
+            "address": "Address",
+            "reason": "Reason",
+            "birthday": "Birthday",
+            "gender": "Gender",
+            "btnConfilm": "Confilm",
+            "btnCancel": "Cancel",
+            "priceBooking": "Free booking",
+            "price": "Price"
         }
     },
     "admin": {

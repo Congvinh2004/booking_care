@@ -1,10 +1,7 @@
 .booking-modal-container {
-    z-index   : 1;
-    margin-top: 55px;
-    width     : 900px;
+    z-index: 1001;
 
     .booking-modal-content {
-        overflow         : hidden;
         display          : flex;
         flex-direction   : column;
         // height        : 500px;
@@ -38,6 +35,16 @@
 
             .price {
                 padding-top: 5px;
+            }
+
+            .row {
+
+                .gender {
+                    .gender-select {
+                        z-index: 2000;
+                    }
+                }
+
             }
         }
 
