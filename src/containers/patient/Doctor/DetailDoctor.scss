@@ -10,12 +10,13 @@
         padding-bottom: 15px;
 
         .content-left {
-            width        : 20%;
-            background   : center top no-repeat;
-            height       : 120px;
-            width        : 120px;
-            margin       : 10px;
-            border-radius: 50%;
+            width              : 20%;
+            background-size    : cover;
+            background-position: top center;
+            border-radius      : 50%;
+            height             : 120px;
+            width              : 120px;
+            margin             : 10px;
         }
 
         .content-right {

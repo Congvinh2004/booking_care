@@ -6,7 +6,8 @@ import { getDetailInforDoctor } from '../../../services/userService';
 import { lang } from 'moment';
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from './DoctorSchedule';
-import DoctorExtrainfor from './DoctorExtrainfor';
+import DoctorExtraInfor from './DoctorExtraInfor';
+
 class DetailDoctor extends Component {
     constructor(props) {
         super(props);
@@ -61,7 +62,7 @@ class DetailDoctor extends Component {
                         <div className='intro-doctor'>
                             <div className='content-left'
                                 style={{
-                                    backgroundImage: `url(${detailDoctor.image})`,
+                                    backgroundImage: `url(${detailDoctor && detailDoctor.image ? detailDoctor.image : ''})`,
                                 }}>
 
                             </div>
@@ -93,7 +94,7 @@ class DetailDoctor extends Component {
                         <div className='content-right'>
 
 
-                            <DoctorExtrainfor doctorIdFromParent={this.state.currentDoctorId} />
+                            <DoctorExtraInfor doctorIdFromParent={this.state.currentDoctorId} />
                         </div>
 
                     </div>

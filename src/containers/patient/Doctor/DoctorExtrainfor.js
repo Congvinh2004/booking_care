@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import './DoctorExtrainfor.scss'
+import './DoctorExtraInfor.scss'
 import { getExtraInforDoctorById } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import { FormattedMessage } from 'react-intl';
 import NumberFormat from 'react-number-format';
 
-class DoctorExtrainfor extends Component {
+class DoctorExtraInfor extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -42,7 +42,6 @@ class DoctorExtrainfor extends Component {
     render() {
         let { language } = this.props
         let { isShowDetailInfor, extraInfor } = this.state
-        console.log('check state inforDoctor: ', this.state)
         return (
             <>
                 <div className='doctor-extra-infor-container'>
@@ -193,4 +192,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DoctorExtrainfor);
+export default connect(mapStateToProps, mapDispatchToProps)(DoctorExtraInfor);
