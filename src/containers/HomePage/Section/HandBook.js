@@ -57,47 +57,41 @@ class HandBook extends Component {
 
                         <Slider {...this.props.settings}>
                             <div className='section-customize'>
-                                <div className='bg-image section-handbook'>
+                                <div className='bg-image section-handbook section-handbook1'>
 
                                 </div>
-                                <div>Cơ xương khớp</div>
 
+
+                            </div>
+                            {/* <div className='section-customize'>
+                                <div className='bg-image  section-handbook'>
+
+                                </div>
 
                             </div>
                             <div className='section-customize'>
                                 <div className='bg-image section-handbook'>
 
                                 </div>
-                                <div>Thần kinh</div>
 
-                            </div>
-                            <div className='section-customize'>
+                            </div> */}
+                            {/* <div className='section-customize'>
                                 <div className='bg-image section-handbook'>
 
                                 </div>
-                                <div>Tiêu hóa</div>
 
-                            </div>
+                            </div> */}
                             <div className='section-customize'>
-                                <div className='bg-image section-handbook'>
+                                <div className='bg-image section-handbook section-handbook2'>
 
                                 </div>
-                                <div>Tim mạch</div>
-
-                            </div>
-                            <div className='section-customize'>
-                                <div className='bg-image section-handbook'>
-
-                                </div>
-                                <div>Tai mũi họng</div>
 
 
                             </div>
                             <div className='section-customize'>
-                                <div className='bg-image section-handbook'>
+                                <div className='bg-image section-handbook section-handbook3'>
 
                                 </div>
-                                <div>Cột sống</div>
 
                             </div>
                         </Slider>

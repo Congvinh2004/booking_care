@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import './MedicalFacility.scss'
 import specialtyImg from '../../../assets/speciatly/co-xuong.png'
 import { FormattedMessage } from 'react-intl';
-
+import choray from "../../../assets/speciatly/cho-ray.jpg"
+import medlatec from "../../../assets/speciatly/medlatec.png"
+import vietduc from "../../../assets/speciatly/viet-duc.jpg"
+import yduoc from "../../../assets/speciatly/y-duoc.jpg"
 import Slider from 'react-slick';
 class MedicalFacility extends Component {
 
@@ -34,9 +37,34 @@ class MedicalFacility extends Component {
                         <Slider {...this.props.settings}>
                             <div className='section-customize'>
                                 <div className='bg-image section-medical-facility'>
+                                    {/* <img className='img-specialty' src={vietduc}></img> */}
+                                </div>
+                                {/* <div>Cơ xương khớp</div> */}
+
+
+                            </div>
+                            <div className='section-customize'>
+                                <div className='bg-image section-medical-facility'>
+                                    {/* <img className='img-specialty' src={yduoc}></img> */}
+                                </div>
+
+                            </div>
+                            <div className='section-customize'>
+                                <div className='bg-image section-medical-facility'>
+                                    {/* <img className='img-specialty' src={medlatec}></img> */}
+                                </div>
+
+                            </div>
+                            <div className='section-customize'>
+                                <div className='bg-image section-medical-facility'>
+                                    {/* <img className='img-specialty' src={choray}></img> */}
+                                </div>
+
+                            </div>
+                            <div className='section-customize'>
+                                <div className='bg-image section-medical-facility'>
 
                                 </div>
-                                <div>Cơ xương khớp</div>
 
 
                             </div>
@@ -44,36 +72,6 @@ class MedicalFacility extends Component {
                                 <div className='bg-image section-medical-facility'>
 
                                 </div>
-                                <div>Thần kinh</div>
-
-                            </div>
-                            <div className='section-customize'>
-                                <div className='bg-image section-medical-facility'>
-
-                                </div>
-                                <div>Tiêu hóa</div>
-
-                            </div>
-                            <div className='section-customize'>
-                                <div className='bg-image section-medical-facility'>
-
-                                </div>
-                                <div>Tim mạch</div>
-
-                            </div>
-                            <div className='section-customize'>
-                                <div className='bg-image section-medical-facility'>
-
-                                </div>
-                                <div>Tai mũi họng</div>
-
-
-                            </div>
-                            <div className='section-customize'>
-                                <div className='bg-image section-medical-facility'>
-
-                                </div>
-                                <div>Cột sống</div>
 
                             </div>
                         </Slider>

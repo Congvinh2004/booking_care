@@ -222,7 +222,7 @@ class UserRedux extends Component {
         let { email, password, firstName, lastName, phoneNumber, address, gender, position, role, avatar } = this.state;
         return (
             <div className='user-redux-container'>
-                <div className="title" >Learn React-Redux with HoiDanIT</div>
+                <div className="title" >Quản lý thông tin bác sĩ</div>
                 <div className='user-redux-body'>
                     <div className='container'>
                         <div className='row'>

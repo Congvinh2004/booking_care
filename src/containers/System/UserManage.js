@@ -146,13 +146,13 @@ class UserManage extends Component {
 
                     />
                 }
-                <div className='title text-center'>Manage users with CV</div>
+                <div className='title text-center'>Manage doctors</div>
                 <div className='mx-1'>
                     <button
                         onClick={() => { this.handleAddNewuser() }}
                         className='btn btn-primary px-3'>
                         <i className="fas fa-plus"></i>
-                        Add  new users
+                        Add new doctor
 
                     </button>
                 </div>

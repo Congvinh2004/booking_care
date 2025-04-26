@@ -3,7 +3,10 @@ import { connect } from 'react-redux';
 import './Specialty.scss'
 import { FormattedMessage } from 'react-intl';
 import specialtyImg from '../../../assets/speciatly/co-xuong.png'
-
+import Coxuong from "../../../assets/speciatly/co-xuong.png"
+import tieuhoa from "../../../assets/speciatly/tieu-hoa.png"
+import timmach from "../../../assets/speciatly/tim-mach.png"
+import thankinh from "../../../assets/speciatly/than-kinh.png"
 import Slider from 'react-slick';
 
 function SampleNextArrow(props) {
@@ -57,46 +60,52 @@ class Specialty extends Component {
                         <Slider {...this.props.settings}>
                             <div className='section-customize'>
                                 <div className='bg-image section-specialty'>
+                                    <img className='img-specialty' src={Coxuong}></img>
 
                                 </div>
-                                <div>Cơ xương khớp</div>
+                                <div className='name-specialty'>Cơ xương khớp</div>
 
 
                             </div>
                             <div className='section-customize'>
                                 <div className='bg-image section-specialty'>
+                                    <img className='img-specialty' src={thankinh}></img>
 
                                 </div>
-                                <div>Thần kinh</div>
+                                <div className='name-specialty'>Thần kinh</div>
 
                             </div>
                             <div className='section-customize'>
                                 <div className='bg-image section-specialty'>
+                                    <img className='img-specialty' src={tieuhoa}></img>
 
                                 </div>
-                                <div>Tiêu hóa</div>
+                                <div className='name-specialty'>Tiêu hóa</div>
 
                             </div>
                             <div className='section-customize'>
                                 <div className='bg-image section-specialty'>
+                                    <img className='img-specialty' src={timmach}></img>
 
                                 </div>
-                                <div>Tim mạch</div>
+                                <div className='name-specialty'>Tim mạch</div>
 
                             </div>
-                            <div className='section-customize'>
-                                <div className='bg-image section-specialty'>
+                            {/* <div className='section-customize'> */}
+                            {/* <div className='bg-image section-specialty'>
+                                <img src={Coxuong}></img>
 
                                 </div>
                                 <div>Tai mũi họng</div>
 
 
-                            </div>
+                            </div> */}
                             <div className='section-customize'>
                                 <div className='bg-image section-specialty'>
+                                    <img className='img-specialty' src={timmach}></img>
 
                                 </div>
-                                <div>Cột sống</div>
+                                <div className='name-specialty'>Cột sống</div>
 
                             </div>
                         </Slider>
