@@ -74,6 +74,13 @@ class ManageSpecialty extends Component {
         let response = await createNewSpecialty(this.state)
         if (response && response.errCode === 0) {
             toast.success('New specialty saved successfully !')
+            this.setState({
+                name: '',
+                descriopMarkdown: '',
+                descriptionHTML: '',
+                previewImgURL: '',
+                avatar: ''
+            })
         }
         else {
             toast.error('Save failed!')
@@ -93,7 +100,7 @@ class ManageSpecialty extends Component {
                     <div className='add-new-specialty my-3 mx-2 row'>
                         <div className='specialty-name form-group col-6'>
                             <label>Tên chuyên khoa</label>
-                            <input type='text' onChange={(event) => this.handleOnchangeInput(event, 'name')} className='form-control' placeholder='Enter name specialty' />
+                            <input type='text' value={this.state.name} onChange={(event) => this.handleOnchangeInput(event, 'name')} className='form-control' placeholder='Enter name specialty' />
                         </div>
                         <div className='specialty-avatar form-group col-6'>
                             <div className='col-4'>

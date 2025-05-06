@@ -44,7 +44,7 @@
                 }
 
                 &.section-medical-facility {
-                    background-image: url('../../assets/speciatly/viet-duc.jpg');
+                    background-image: url('../../assets/hospital/viet-duc.jpg');
                     background-size : auto;
                 }
 
@@ -57,26 +57,33 @@
                 }
 
                 &.section-handbook1 {
-                    background-image: url('../../assets/speciatly/camnang1.png');
+                    background-image: url('../../assets/handbook/camnang1.png');
 
                 }
 
                 &.section-handbook2 {
-                    background-image: url('../../assets/speciatly/camnang2.png');
+                    background-image: url('../../assets/handbook/camnang2.png');
 
                 }
 
                 &.section-handbook3 {
-                    background-image: url('../../assets/speciatly/camnang3.png');
+                    background-image: url('../../assets/handbook/camnang3.png');
 
                 }
 
             }
 
             .name-specialty {
-                text-align : center;
+                // text-align : center;
                 font-size  : 20px;
                 font-weight: 600;
+                padding    : 10px 0 0 10px;
+                width      : auto !important;
+                display    : inline-block;
+
+                &:hover {
+                    color: #4ABCE2;
+                }
             }
         }
 
@@ -134,6 +141,7 @@
 
     .slick-prev {
         border          : 1px solid green !important;
+        top             : 45%;
         left            : -10px !important;
         z-index         : 1000 !important;
         height          : 48px !important;
@@ -158,6 +166,7 @@
 
     .slick-next {
         border          : 1px solid red !important;
+        top             : 45%;
         right           : -10px !important;
         z-index         : 1000 !important;
         height          : 48px !important;

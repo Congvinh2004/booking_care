@@ -3,10 +3,10 @@ import { connect } from 'react-redux';
 import './MedicalFacility.scss'
 import specialtyImg from '../../../assets/speciatly/co-xuong.png'
 import { FormattedMessage } from 'react-intl';
-import choray from "../../../assets/speciatly/cho-ray.jpg"
-import medlatec from "../../../assets/speciatly/medlatec.png"
-import vietduc from "../../../assets/speciatly/viet-duc.jpg"
-import yduoc from "../../../assets/speciatly/y-duoc.jpg"
+import choray from "../../../assets/hospital/cho-ray.jpg"
+import medlatec from "../../../assets/hospital/medlatec.png"
+import vietduc from "../../../assets/hospital/viet-duc.jpg"
+import yduoc from "../../../assets/hospital/y-duoc.jpg"
 import Slider from 'react-slick';
 class MedicalFacility extends Component {
 
