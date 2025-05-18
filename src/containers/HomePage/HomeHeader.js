@@ -5,7 +5,7 @@ import { FormattedMessage } from 'react-intl';
 import { LANGUAGES } from '../../utils';
 import { changeLanguageApp } from '../../store/actions';
 import { withRouter } from 'react-router';
-
+import logo from "../../../src/assets/images/NOThink-removebg-preview.png"
 class HomeHeader extends Component {
     changeLanguage = (language) => {
         this.props.changeLanguageAppRedux(language)
@@ -25,9 +25,11 @@ class HomeHeader extends Component {
                 <div className='home-header-container'>
                     <div className='home-header-content'>
                         <div className='lert-content'>
-                            <i className="fas fa-bars"></i>
+
                             <div className='header-logo'
+
                                 onClick={() => { this.returnToHome() }}>
+                                <img className='item-logo' src={logo} />
                             </div>
 
                         </div>

@@ -109,7 +109,9 @@
             "province": "Chọn tỉnh thành",
             "name-clinic": "Tên phòng khám",
             "clinic-address": "Địa chỉ phòng khám",
-            "note": "Ghí chú"
+            "note": "Ghí chú",
+            "select-specialty": "Chọn chuyên khoa",
+            "select-clinic": "Chọn phòng khám"
         },
         "manage-specialty": {
             "add": "Thêm mới người dùng"

@@ -9,6 +9,7 @@ import timmach from "../../../assets/speciatly/tim-mach.png"
 import thankinh from "../../../assets/speciatly/than-kinh.png"
 import { getAllSpecialty } from '../../../services/userService';
 import Slider from 'react-slick';
+import { withRouter } from 'react-router';
 class Specialty extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +24,12 @@ class Specialty extends Component {
             this.setState({
                 listSpecialty: listSpecialty.data
             })
+        }
+    }
+
+    handleViewDetailSpecialty = (specialty) => {
+        if (this.props.history) {
+            this.props.history.push(`/detail-specialty/${specialty.id}`)
         }
     }
     render() {
@@ -44,17 +51,18 @@ class Specialty extends Component {
                     <div className='section-body'>
 
                         <Slider {...this.props.settings}>
-                            {listSpecialty.map((item, index) => {
-                                return (
-                                    <div key={index} className='section-customize'>
-                                        <div className='bg-image section-specialty'>
-                                            <img className='img-specialty' src={item.image}></img>
+                            {listSpecialty && listSpecialty.length > 0 &&
+                                listSpecialty.map((item, index) => {
+                                    return (
+                                        <div key={index} className='section-customize' onClick={() => this.handleViewDetailSpecialty(item)}>
+                                            <div className='bg-image section-specialty'>
+                                                <img className='img-specialty' src={item.image}></img>
+                                            </div>
+                                            <div className='name-specialty'>{item.name}</div>
                                         </div>
-                                        <div className='name-specialty'>{item.name}</div>
-                                    </div>
-                                )
-                            }
-                            )}
+                                    )
+                                }
+                                )}
 
                         </Slider>
                     </div>
@@ -79,4 +87,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Specialty);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Specialty));

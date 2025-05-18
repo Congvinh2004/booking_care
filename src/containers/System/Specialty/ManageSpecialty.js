@@ -5,7 +5,7 @@ import MarkdownIt from 'markdown-it';
 import { CommonUtils } from "../../../utils"
 import MdEditor from 'react-markdown-editor-lite';
 import { FormattedMessage } from 'react-intl';
-import { createNewSpecialty } from '../../../services/userService'
+import { createNewSpecialty , getAllSpecialty} from '../../../services/userService'
 import { toast } from 'react-toastify';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
@@ -17,12 +17,13 @@ class ManageSpecialty extends Component {
             descriopMarkdown: '',
             descriptionHTML: '',
             previewImgURL: '',
-            avatar: ''
+            avatar: '', 
         }
     }
 
     async componentDidMount() {
-
+       
+        
     }
 
 

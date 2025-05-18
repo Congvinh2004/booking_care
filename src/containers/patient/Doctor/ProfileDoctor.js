@@ -40,7 +40,12 @@ class ProfileDoctor extends Component {
 
 
         }
-
+        if (this.props.doctorId !== prevProps.doctorId) {
+            let data = await this.getInforDoctor(this.props.doctorId);
+            this.setState({
+                dataProfile: data,
+            });
+        }
 
 
     }
@@ -79,7 +84,6 @@ class ProfileDoctor extends Component {
     render() {
         let { dataProfile } = this.state
         let { language, isShowDescriptionDoctor, dataTime } = this.props
-        console.log('check prpos: ', dataTime)
         let nameVi, nameEn = ''
 
         if (dataProfile && dataProfile.positionData) {
@@ -124,7 +128,7 @@ class ProfileDoctor extends Component {
                         </div>
 
                     </div>
-                    <div className='price'>
+                    {/* <div className='price'>
 
                         <FormattedMessage id="patient.booking-modal.price" />:
                         {dataProfile && dataProfile.Doctor_Infor && language === LANGUAGES.VI
@@ -144,11 +148,7 @@ class ProfileDoctor extends Component {
                                 thousandSeparator={true}
                                 suffix={'$'} />
                         }
-
-
-
-
-                    </div>
+                    </div> */}
 
                 </div >
 

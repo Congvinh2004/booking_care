@@ -27,10 +27,17 @@
             }
 
             .header-logo {
-                background: url('../../assets/images/logo.svg') center center no-repeat;
-                height    : 43px;
-                width     : 200px;
-                cursor    : pointer;
+
+                // background: url('../../assets/images/NOThink-removebg-preview.png') center center no-repeat;
+                height: 100%;
+                width : 200px;
+                cursor: pointer;
+
+                .item-logo {
+                    height: 100%;
+                    width : auto;
+                    cursor: pointer;
+                }
             }
         }
 
@@ -117,7 +124,7 @@
 
 .home-header-banner {
 
-    background            : url('../../assets/images/bookingcare-cover-4.jpg');
+    background            : url('../../assets/images/banner1.webp');
     height                : 485px;
     background-repeat     : no-repeat;
     background-size       : cover;
@@ -154,7 +161,7 @@
             align-items     : center;
             margin          : 0 auto;
             padding         : 10px;
-            background-color: #FFC419;
+            background-color: #49BCE2;
             border-radius   : 30px;
             margin-top      : 20px;
 
@@ -168,6 +175,10 @@
                 outline         : none;
                 background-color: transparent;
                 border          : none;
+
+                &::placeholder {
+                    color: white;
+                }
             }
         }
     }

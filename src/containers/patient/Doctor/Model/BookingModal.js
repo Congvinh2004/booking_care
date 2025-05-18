@@ -106,7 +106,7 @@ class BookingModal extends Component {
 
         let res = await postPatientBookAppointment({
             fullName: this.state.fullName,
-            phoneNumber: this.state.fullName,
+            phoneNumber: this.state.phoneNumber,
             email: this.state.email,
             address: this.state.address,
             reason: this.state.reason,
@@ -127,7 +127,6 @@ class BookingModal extends Component {
     render() {
         let { isOpenModal, dataTime, closeBookingModal } = this.props
         let doctorId = dataTime && !_.isEmpty(dataTime) ? dataTime.doctorId : ''
-        console.log('check gender: ', this.props.genders)
 
         return (
             <Modal

@@ -32,9 +32,6 @@ class DetailDoctor extends Component {
                     currentDoctorId: id
                 })
             }
-
-
-
         }
     }
 

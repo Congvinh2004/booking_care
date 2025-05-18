@@ -53,10 +53,8 @@ class About extends Component {
                     </div>
 
                     <div className='content-right'>
-                        <p>✔ Các bạn có thể làm chủ công nghệ, cũng như học được, biết được những kiến thức thực tế dùng tại các công ty hiện nay. Sau khi kết thúc khóa học này, mình tin chắc rằng dự án này đủ lớn, đủ thực tế để cho các bạn mới ra trường viết vào CV xin việc của mình ^^
-
-                        </p>
-                        <p>✔ Các bạn hiểu được 1 FullStack Web Developer thì cần chuẩn bị những gì. Ở đây, mình không dám chắc 100% các bạn sẽ trở thành Fullstack Developer, nhưng nếu bạn chọn Frontend hay Backend thì khóa học này cũng cung cấp cho bạn nhiều điều bổ ích</p>
+                        <p>✔ Giải pháp của BookingCare là xây dựng nền tảng công nghệ kết nối mạng lưới bác sĩ giỏi và các cơ sở y tế uy tín với thông tin được xác thực rõ ràng, cập nhật. Ứng dụng công nghệ giúp người bệnh dễ dàng lựa chọn đúng bác sĩ chuyên khoa phù hợp với vấn đề của mình và Đặt lịch khám. </p>
+                        <p>✔ Tiết kiệm, thông minh và hiệu quả là 3 giá trị, 3 lợi ích người bệnh nhận được qua việc đặt lịch khám. Tiết kiệm thời gian, giảm thời gian chờ đợi, tiết kiệm tiền bạc, công sức. Thông minh vì đã ứng dụng công nghệ trong kết nối người bệnh với bác sĩ và cơ sở y tế. Hiệu quả bởi người bệnh được định hướng đi khám đúng chuyên khoa, đúng bác sĩ phù hợp nhất.</p>
                     </div>
                 </div>
             </div >
