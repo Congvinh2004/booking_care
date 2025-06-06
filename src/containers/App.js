@@ -16,6 +16,8 @@ import DetailDoctor from './patient/Doctor/DetailDoctor.js';
 import DetailSpecialty from './patient/Specialty/DetailSpecialty.js';
 import VerifyEmail from './patient/VerifyEmail.js';
 import Doctor from '../routes/Doctor.js';
+import DetailClinic from './System/Clinic/DetailClinic.js';
+import ConfirmModal from '../components/ConfirmModal.js';
 class App extends Component {
 
     handlePersistorState = () => {
@@ -52,6 +54,7 @@ class App extends Component {
                                     <Route path={'/doctor/'} component={userIsAuthenticated(Doctor)} />
                                     <Route path={path.HOMEPAGE} component={HomePage} />
                                     <Route path={path.DETAIL_DOCTOR} component={DetailDoctor} />
+                                    <Route path={path.DETAIL_CLINIC} component={DetailClinic} />
                                     <Route path={path.DETAIL_SPECIALTY} component={DetailSpecialty} />
                                     <Route path={path.VERIFY_EMAIL_BOOKING} component={VerifyEmail} />
                                 </Switch>
@@ -77,6 +80,7 @@ class App extends Component {
                             pauseOnHover
                             theme="colored"
                         />
+                        <ConfirmModal />
                     </div>
                 </Router>
             </Fragment>

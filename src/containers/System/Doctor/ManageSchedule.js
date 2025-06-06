@@ -105,55 +105,88 @@ class ManageSchedule extends Component {
         }
     }
     handleSaveSchedule = async () => {
-
         let { rangeTime, selectedDoctor, currentDate } = this.state;
-        let result = [];
-        console.log('check currentDate: ', currentDate)
+
+        // Validate trước khi mở modal
         if (!currentDate) {
-            toast.error('invalid date !')
+            toast.error('Vui lòng chọn ngày!');
             return;
         }
         if (selectedDoctor && _.isEmpty(selectedDoctor)) {
-            toast.error('invalid selected doctor !')
+            toast.error('Vui lòng chọn bác sĩ!')
             return;
         }
 
+        let selectedTime = rangeTime.filter(item => item.isSelected === true);
+        if (!selectedTime || selectedTime.length === 0) {
+            toast.error('Vui lòng chọn thời gian khám!')
+            return;
+        }
 
-        let formatedDate = new Date(currentDate).getTime();
-        console.log('check formated date: ', formatedDate)
+        // Nếu validate ok thì mở modal xác nhận
+        this.props.setContentOfConfirmModal({
+            isOpen: true,
+            messageId: 'common.confirm-save-schedule',
+            handleFunc: async () => {
+                let result = [];
+                console.log('check currentDate: ', currentDate)
+                if (!currentDate) {
+                    toast.error('Vui lòng chọn ngày!');
+                    return;
+                }
+                if (selectedDoctor && _.isEmpty(selectedDoctor)) {
+                    toast.error('Vui lòng chọn bác sĩ!')
+                    return;
+                }
 
-        if (rangeTime && rangeTime.length > 0) {
-            let selectedTime = rangeTime.filter(item => item.isSelected === true)
-            if (selectedTime && selectedTime.length > 0) {
-                console.log('chekc selectedTime: ', selectedTime)
-                selectedTime.map(schedule => {
-                    let obj = {};
-                    obj.doctorId = selectedDoctor.value;
-                    obj.date = formatedDate;
-                    obj.timeType = schedule.keyMap
-                    result.push(obj);
+                let formatedDate = new Date(currentDate).getTime();
+                console.log('check formated date: ', formatedDate)
+
+                if (rangeTime && rangeTime.length > 0) {
+                    let selectedTime = rangeTime.filter(item => item.isSelected === true)
+                    if (selectedTime && selectedTime.length > 0) {
+                        console.log('chekc selectedTime: ', selectedTime)
+                        selectedTime.map(schedule => {
+                            let obj = {};
+                            obj.doctorId = selectedDoctor.value;
+                            obj.date = formatedDate;
+                            obj.timeType = schedule.keyMap
+                            result.push(obj);
+                        })
+                    }
+
+                    else {
+                        toast.error('Vui lòng chọn thời gian khám!')
+                        return;
+                    }
+                }
+
+                let res = await saveBulkScheduleDoctor({
+                    arrSchedule: result,
+                    doctorId: selectedDoctor.value,
+                    date: formatedDate
                 })
-            }
+                if (res && res.errCode === 0) {
+                    this.setState({
+                        rangeTime: rangeTime.map(item => ({
+                            ...item,
+                            isSelected: false
+                        })),
+                        selectedDoctor: {},  // Reset bác sĩ đã chọn
+                        currentDate: ''      // Reset ngày đã chọn
+                    });
+                    toast.success('Lưu lịch khám thành công!')
 
-            else {
-                toast.error('invalid selected time !')
-                return;
-            }
-        }
-
-        let res = await saveBulkScheduleDoctor({
-            arrSchedule: result,
-            doctorId: selectedDoctor.value,
-            date: formatedDate
+                }
+                else {
+                    toast.error('Có lỗi xảy ra!')
+                    console.log('error saveBulkScheduleDoctor >> res: ', res)
+                }
+            },
+            // dataFunc: data
         })
-        if (res && res.errCode === 0) {
-            toast.success('save infor succeed')
 
-        }
-        else {
-            toast.error('error save BulkScheduleDoctor')
-            console.log('error saveBulkScheduleDoctor >> res: ', res)
-        }
+
     }
 
     render() {
@@ -234,7 +267,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchAllDoctorRedux: () => dispatch(actions.fetchAllDoctor()),
-        fetchAllScheduleTimeRedux: () => dispatch(actions.fetchAllScheduleTime())
+        fetchAllScheduleTimeRedux: () => dispatch(actions.fetchAllScheduleTime()),
+        setContentOfConfirmModal: (contentOfConfirmModal) => dispatch(actions.setContentOfConfirmModal(contentOfConfirmModal))
     };
 };
 

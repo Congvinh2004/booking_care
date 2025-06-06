@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-
+import * as actions from "../../store/actions";
 import { FormattedMessage } from 'react-intl';
 import './userManage.scss'
 import { getAllUsers, createNewUserService, deleteUserService, editUserService } from '../../services/userService';
 import { connect } from 'react-redux';
 import ModalUser from './ModalUser';
 import { emitter } from '../../utils/emitter';
+import { toast } from 'react-toastify';
 import ModalEditUser from './ModalEditUser';
+import ConfirmModal from '../../components/ConfirmModal';
 class UserManage extends Component {
     constructor(props) {
         super(props);
@@ -86,9 +88,6 @@ class UserManage extends Component {
 
     }
     handleDeleteUser = async (user) => {
-
-
-
         try {
             let res = await deleteUserService(user.id);
             if (res && res.errCode === 0) {
@@ -98,6 +97,27 @@ class UserManage extends Component {
             console.log(e);
         }
     }
+
+    handleDeleteUser = (user) => {
+        this.props.setContentOfConfirmModal({
+            isOpen: true,
+            messageId: 'common.confirm-delete-user',
+            handleFunc: async () => {
+                try {
+                    let res = await deleteUserService(user.id);
+                    if (res && res.errCode === 0) {
+                        await this.getAllUsersFromReact();
+                        toast.success('Xóa người dùng thành công!');
+                    }
+                } catch (e) {
+                    console.log(e);
+                    toast.error('Xóa người dùng thất bại!');
+                }
+            },
+            dataFunc: user
+        })
+    }
+
     handleEditUser = (user) => {
         this.setState({
             isOpenModalEditUser: !this.state.isOpenModalEditUser,
@@ -219,6 +239,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        // setContentOfConfirmModal: (contentOfConfirmModal) => dispatch(actions.setContentOfConfirmModal(contentOfConfirmModal))
     };
 };
 

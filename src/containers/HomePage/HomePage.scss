@@ -22,14 +22,14 @@
 
 
             .bg-image {
-                border             : 2px solid #DDDDDD;
-                height             : 150px;
-                width              : 278px;
-                background-color   : #ececec;
-                border-radius      : 10px;
-                background-size    : cover;
-                background-repeat  : no-repeat;
-                background-position: center center;
+                border                : 2px solid #DDDDDD;
+                height                : 150px;
+                width                 : 278px;
+                // background-color   : #ececec;
+                border-radius         : 10px;
+                background-size       : cover;
+                background-repeat     : no-repeat;
+                background-position   : center center;
 
                 .img-specialty {
                     width        : 100%;
@@ -44,8 +44,9 @@
                 }
 
                 &.section-medical-facility {
-                    background-image: url('../../assets/hospital/viet-duc.jpg');
-                    background-size : auto;
+                    // background-image: url('../../assets/hospital/viet-duc.jpg');
+                    background-size: contain;
+                    margin-bottom  : 10px;
                 }
 
                 &.section-outstanding-doctor {

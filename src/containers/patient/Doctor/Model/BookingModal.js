@@ -23,10 +23,11 @@ class BookingModal extends Component {
             address: '',
             reason: '',
             selectedGender: '',
-            birthday: '',
             doctorId: '',
             genders: '',
-            timeType: ''
+            timeType: '',
+            isBooking: false,
+            isLoading: false
         }
     }
 
@@ -121,34 +122,64 @@ class BookingModal extends Component {
     }
 
     handleConfilmBooking = async () => {
-        let date = new Date(this.state.birthday).getTime()
-        let timeString = this.buildTimeBooking(this.props.dataTime)
-        let res = await postPatientBookAppointment({
-            fullName: this.state.fullName,
-            phoneNumber: this.state.phoneNumber,
-            email: this.state.email,
-            address: this.state.address,
-            reason: this.state.reason,
-            selectedGender: this.state.selectedGender.value,
-            date: date,
-            doctorId: this.state.doctorId,
-            timeType: this.state.timeType,
-            language: this.props.language,
-            timeString: timeString
-        })
-        if (res && res.errCode === 0) {
-            toast.success("booking a new appointment succeed !")
-            this.props.closeBookingModal();
-        }
-        else {
+        this.setState({ isLoading: true });
+        try {
+            let date = new Date(this.state.birthday).getTime()
+            console.log('check date: ', date)
+            let timeString = this.buildTimeBooking(this.props.dataTime)
+            let res = await postPatientBookAppointment({
+                fullName: this.state.fullName,
+                phoneNumber: this.state.phoneNumber,
+                email: this.state.email,
+                address: this.state.address,
+                reason: this.state.reason,
+                selectedGender: this.state.selectedGender.value,
+                birthday: date,
+                dateTime: +(this.props.dataTime.date),
+                doctorId: this.state.doctorId,
+                timeType: this.state.timeType,
+                language: this.props.language,
+                timeString: timeString
+            })
+            if (res && res.errCode === 0) {
+                if (this.props.onBookedTime) {
+                    this.props.onBookedTime({
+                        doctorId: this.state.doctorId,
+                        date: this.props.dataTime.date,
+                        timeType: this.state.timeType
+                    });
+                }
+                toast.success("booking a new appointment succeed !")
+                this.props.closeBookingModal();
+                this.setState({
+                    fullName: '',
+                    phoneNumber: '',
+                    email: '',
+                    address: '',
+                    reason: '',
+                    selectedGender: '',
+                    doctorId: '',
+                    genders: '',
+                    timeType: '',
+                }
+                )
+            }
+            else {
+                toast.error('booking a new appointment arror !')
+
+            }
+        } catch (error) {
+            console.error('Error:', error);
             toast.error('booking a new appointment arror !')
+        } finally {
+            this.setState({ isLoading: false }); // Stop loading
         }
         console.log('check data: ', this.state)
     }
     render() {
         let { isOpenModal, dataTime, closeBookingModal } = this.props
         let doctorId = dataTime && !_.isEmpty(dataTime) ? dataTime.doctorId : ''
-
+        let { isLoading } = this.state;
         return (
             <Modal
                 isOpen={isOpenModal}
@@ -156,6 +187,14 @@ class BookingModal extends Component {
                 size="lg"
                 centered
             >
+                {isLoading && (
+                    <div className="loading-overlay">
+                        <div className="loading-content">
+                            <i className="fas fa-spinner fa-spin"></i>
+                            <p>Đang xử lý...</p>
+                        </div>
+                    </div>
+                )}
                 <div className='booking-modal-content'>
 
                     <div className='booking-modal-header'>
@@ -272,6 +311,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         getGenders: () => dispatch(actions.fetchGenderStart()),
+        updateBookedTime: (data) => dispatch(actions.updateBookedTime(data)),
+
     };
 };
 

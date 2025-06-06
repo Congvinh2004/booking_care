@@ -1,23 +1,24 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import './ManageSpecialty.scss'
+import './ManageClinic.scss'
 import MarkdownIt from 'markdown-it';
 import { CommonUtils } from "../../../utils"
 import MdEditor from 'react-markdown-editor-lite';
 import { FormattedMessage } from 'react-intl';
-import { createNewSpecialty, getAllSpecialty } from '../../../services/userService'
+import { createNewClinic } from '../../../services/userService'
 import { toast } from 'react-toastify';
 
 const mdParser = new MarkdownIt(/* Markdown-it options */);
-class ManageSpecialty extends Component {
+class ManageClinic extends Component {
     constructor(props) {
         super(props);
         this.state = {
             name: '',
-            descriopMarkdown: '',
+            address: '',
+            descriptionMarkdown: '',
             descriptionHTML: '',
             previewImgURL: '',
-            avatar: '',
+            imageBase64: '',
         }
     }
 
@@ -34,9 +35,9 @@ class ManageSpecialty extends Component {
 
     }
 
-    handleEditorSpecialtyChange = ({ html, text }) => {
+    handleEditorClinicChange = ({ html, text }) => {
         this.setState({
-            descriopMarkdown: text,
+            descriptionMarkdown: text,
             descriptionHTML: html,
         })
     }
@@ -52,16 +53,11 @@ class ManageSpecialty extends Component {
             console.log('check img base64: ', base64)
             this.setState({
                 previewImgURL: objectURL,
-                avatar: base64
+                imageBase64: base64
             })
         }
     }
-    // openPreviewImg = () => {
-    //     if (!this.state.previewImgURL) return;
-    //     this.setState({
-    //         isOpen: true
-    //     })
-    // }
+
     handleOnchangeInput = (event, id) => {
         let copyState = { ...this.state };
         copyState[id] = event.target.value;
@@ -71,16 +67,17 @@ class ManageSpecialty extends Component {
         })
     }
 
-    handleOnClickSaveInforSpecialty = async () => {
-        let response = await createNewSpecialty(this.state)
+    handleOnClickSaveInforClinic = async () => {
+        let response = await createNewClinic(this.state)
         if (response && response.errCode === 0) {
             toast.success('New specialty saved successfully !')
             this.setState({
                 name: '',
-                descriopMarkdown: '',
+                descriptionMarkdown: '',
                 descriptionHTML: '',
                 previewImgURL: '',
-                avatar: ''
+                imageBase64: '',
+                address: '',
             })
         }
         else {
@@ -95,18 +92,18 @@ class ManageSpecialty extends Component {
             <>
                 <div className="manage-specialty-container">
                     <div className='manage-specialty-title'>
-                        Manage specialty
+                        Quản lý phòng khám
 
                     </div>
                     <div className='add-new-specialty my-3 mx-2 row'>
                         <div className='specialty-name form-group col-6'>
-                            <label>Tên chuyên khoa</label>
-                            <input type='text' value={this.state.name} onChange={(event) => this.handleOnchangeInput(event, 'name')} className='form-control' placeholder='Enter name specialty' />
+                            <label>Tên phòng khám</label>
+                            <input type='text' value={this.state.name} onChange={(event) => this.handleOnchangeInput(event, 'name')} className='form-control' placeholder='Enter name clinic' />
                         </div>
                         <div className='specialty-avatar form-group col-6'>
                             <div className='col-4'>
                                 {/* <label><FormattedMessage id="manage-user.image" /></label> */}
-                                <label>Ảnh chuyên khoa</label>
+                                <label>Ảnh phòng khám</label>
                                 <div className='preview-img-container'>
                                     <input id="previewImg" type="file" hidden
                                         onChange={(event) => { this.handleOnchangeImg(event) }}
@@ -125,14 +122,18 @@ class ManageSpecialty extends Component {
                             </div>
 
                         </div>
+                        <div className='col-6 form-group location-clinic ' style={{ paddingLeft: '0px' }}>
+                            <label>Địa chỉ phòng khám</label>
+                            <input type='text' value={this.state.address} onChange={(event) => this.handleOnchangeInput(event, 'address')} className='form-control' placeholder='Enter name clinic' />
+                        </div>
                         <MdEditor
                             style={{ height: '300px' }}
                             renderHTML={text => mdParser.render(text)}
-                            onChange={this.handleEditorSpecialtyChange}
-                            value={this.state.descriopMarkdown}
+                            onChange={this.handleEditorClinicChange}
+                            value={this.state.descriptionMarkdown}
                         />
 
-                        <div className='btn-add-specialty' onClick={() => this.handleOnClickSaveInforSpecialty()}>
+                        <div className='btn-add-specialty' onClick={() => this.handleOnClickSaveInforClinic()}>
                             Lưu thông tin
                         </div>
 
@@ -155,4 +156,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageSpecialty);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageClinic);

@@ -1,0 +1,90 @@
+.manage-patient-container {
+    .m-p-title {
+        font-size     : 20px;
+        margin        : 15px 0;
+        text-align    : center;
+        text-transform: uppercase;
+        color         : #0071ba;
+        font-weight   : bold;
+    }
+
+    .manage-patient-body {
+        padding: 0 20px;
+
+        .table-manage-patient {
+
+            table,
+            th,
+            td {
+                border         : 1px solid black;
+                border-collapse: collapse;
+            }
+
+            th,
+            td {
+                padding   : 5px;
+                text-align: left;
+            }
+        }
+    }
+
+    button {
+        border : none;
+        outline: none;
+        cursor : pointer;
+
+    }
+
+    .mp-btn-confirm {
+        margin-right : 10px;
+        height       : 30px;
+        border-radius: 3px;
+        background   : orange;
+    }
+
+    .mp-btn-remedy {
+        height       : 30px;
+        border-radius: 3px;
+        background   : #39dca0;
+    }
+
+    // Disable pointer events while loading
+    &:has(.loading-overlay) {
+        pointer-events: none;
+
+        button {
+            opacity: 0.7;
+        }
+    }
+}
+
+.loading-overlay {
+    position        : fixed;
+    top             : 0;
+    left            : 0;
+    right           : 0;
+    bottom          : 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    z-index         : 9999;
+
+    .loading-content {
+        background   : white;
+        padding      : 20px;
+        border-radius: 8px;
+        text-align   : center;
+
+        i {
+            font-size    : 2rem;
+            color        : #0071ba;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 10px 0 0;
+            color : #333;
+        }
+    }
+}

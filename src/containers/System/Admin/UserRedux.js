@@ -7,6 +7,7 @@ import './userRedux.scss'
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css'; // This only needs to be imported once in your app
 import TableManageUser from './TableManageUser';
+import { toast } from 'react-toastify';
 class UserRedux extends Component {
     constructor(props) {
         super(props);
@@ -118,46 +119,46 @@ class UserRedux extends Component {
 
 
     handleSaveUser = (data) => {
+        const { action } = this.state;
         let isValid = this.checkValidateInput();
         if (isValid === false) return;
+        this.props.setContentOfConfirmModal({
+            isOpen: true,
+            // Sửa messageId tương ứng với hành động
+            messageId: action === CRUD_ACTIONS.CREATE ? 'common.confirm-add-user' : 'common.confirm-edit-user',
+            handleFunc: async () => {
 
-        let { action } = this.state;
-        // fire redux create user
-
-        if (action === CRUD_ACTIONS.CREATE) {
-
-            this.props.createNewUser({
-                email: this.state.email,
-                password: this.state.password,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                address: this.state.address,
-                phoneNumber: this.state.phoneNumber,
-                gender: this.state.gender,
-                roleId: this.state.role,
-                positionId: this.state.position,
-                avatar: this.state.avatar
-            })
-        }
-
-        // fire redux edit user
-        else if (action === CRUD_ACTIONS.EDIT) {
-            this.props.editUser({
-                id: this.state.userEditId,
-                email: this.state.email,
-                password: this.state.password,
-                firstName: this.state.firstName,
-                lastName: this.state.lastName,
-                address: this.state.address,
-                phoneNumber: this.state.phoneNumber,
-                gender: this.state.gender,
-                roleId: this.state.role,
-                positionId: this.state.position,
-                avatar: this.state.avatar
-            })
-        }
-
-
+                if (action === CRUD_ACTIONS.CREATE) {
+                    this.props.createNewUser({
+                        email: this.state.email,
+                        password: this.state.password,
+                        firstName: this.state.firstName,
+                        lastName: this.state.lastName,
+                        address: this.state.address,
+                        phoneNumber: this.state.phoneNumber,
+                        gender: this.state.gender,
+                        roleId: this.state.role,
+                        positionId: this.state.position,
+                        avatar: this.state.avatar
+                    })
+                } else if (action === CRUD_ACTIONS.EDIT) {
+                    this.props.editUser({
+                        id: this.state.userEditId,
+                        email: this.state.email,
+                        password: this.state.password,
+                        firstName: this.state.firstName,
+                        lastName: this.state.lastName,
+                        address: this.state.address,
+                        phoneNumber: this.state.phoneNumber,
+                        gender: this.state.gender,
+                        roleId: this.state.role,
+                        positionId: this.state.position,
+                        avatar: this.state.avatar
+                    })
+                }
+            },
+            dataFunc: data
+        })
     }
 
     checkValidateInput = () => {
@@ -166,7 +167,7 @@ class UserRedux extends Component {
         for (let i = 0; i < arrCheck.length; i++) {
             if (!this.state[arrCheck[i]]) {
                 isValid = false;
-                alert('this input is required: ' + arrCheck[i]);
+                toast.error('this input is required ' + arrCheck[i]);
                 break;
             }
         }
@@ -392,7 +393,7 @@ const mapDispatchToProps = dispatch => {
         createNewUser: (data) => dispatch(actions.createNewUser(data)),
         editUser: (data) => dispatch(actions.editUser(data)),
 
-
+        setContentOfConfirmModal: (contentOfConfirmModal) => dispatch(actions.setContentOfConfirmModal(contentOfConfirmModal))
 
         // processLogout: () => dispatch(actions.processLogout()),
         // changeLanguageAppRedux: (language) => dispatch(actions.changeLanguageApp(language))

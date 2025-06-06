@@ -16,13 +16,31 @@ class DoctorSchedule extends Component {
             allDays: [],
             allAvalableTime: [],
             isOpenModalBooking: false,
-            dataScheduleTimeModal: {}
+            dataScheduleTimeModal: {},
+            bookedTimes: []
         }
     }
 
     async componentDidMount() {
         let { language } = this.props;
         let allDays = this.getArrDays(language)
+
+
+        let bookedTimes = [];
+
+        const stored = localStorage.getItem('bookedTimes');
+        if (stored) {
+            const parsed = JSON.parse(stored);
+            const now = Date.now();
+
+            if (parsed.expiresAt && now < parsed.expiresAt) {
+                bookedTimes = parsed.data;
+            } else {
+                // Đã qua 0h hôm sau → clear
+                localStorage.removeItem('bookedTimes');
+            }
+        }
+
         if (this.props.doctorIdFromParent) {
 
             let res = await getScheduleDoctorByDate(this.props.doctorIdFromParent, allDays[0].value)
@@ -32,6 +50,7 @@ class DoctorSchedule extends Component {
         }
         this.setState({
             allDays: allDays,
+            bookedTimes: bookedTimes
         })
     }
     getArrDays = (language) => {
@@ -104,6 +123,7 @@ class DoctorSchedule extends Component {
 
 
     handleClickSheduleTime = (time) => {
+        console.log('check time; ', time)
         this.setState({
             isOpenModalBooking: true,
             dataScheduleTimeModal: time
@@ -115,11 +135,33 @@ class DoctorSchedule extends Component {
             dataScheduleTimeModal: time
         })
     }
+
+    handleBookedTime = (bookedTime) => {
+        this.setState(prevState => {
+            const updatedBookedTimes = [...prevState.bookedTimes, bookedTime];
+
+            // Tính thời gian 0h hôm sau
+            const now = new Date();
+            const midnight = new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1); // 00:00 ngày mai
+            const expiresAt = midnight.getTime();
+
+            const dataToStore = {
+                data: updatedBookedTimes,
+                expiresAt: expiresAt
+            };
+
+            localStorage.setItem('bookedTimes', JSON.stringify(dataToStore));
+
+            return {
+                bookedTimes: updatedBookedTimes
+            };
+        });
+    };
+
     render() {
         let { allDays, allAvalableTime, dataScheduleTimeModal, isOpenModalBooking } = this.state
         let { language } = this.props
-
-
+        let { bookedTimes } = this.state;
         return (
             <>
                 <div className='doctor-schedule-container'>
@@ -161,39 +203,46 @@ class DoctorSchedule extends Component {
                         </div>
                         <div className='time-content'>
 
+                            <div className='time-content-btns'>
+                                {allAvalableTime.map((item, index) => {
+                                    const isBooked = bookedTimes.some(bt =>
+                                        bt.doctorId === item.doctorId &&
+                                        bt.date === item.date &&
+                                        bt.timeType === item.timeType
+                                    );
+                                    const timeRange = (language === LANGUAGES.VI ? item.timeTypeData.valueVi : item.timeTypeData.valueEn); // "8:00 - 9:00"
 
-                            {allAvalableTime && allAvalableTime.length > 0 ?
-                                <>
-                                    <div className='time-content-btns'>
+                                    // Lấy giờ bắt đầu (VD: "8:00")
+                                    const startTimeStr = timeRange.split('-')[0].trim(); // "8:00"
 
-                                        {allAvalableTime.map((item, index) => {
-                                            return (
-                                                <button
-                                                    key={index}
-                                                    style={{
-                                                        width: language === LANGUAGES.EN ? "150px" : "115px",
-                                                    }}
-                                                    onClick={() => this.handleClickSheduleTime(item)}
-                                                >
-                                                    {language === LANGUAGES.EN ? item.timeTypeData.valueEn : item.timeTypeData.valueVi}
-                                                </button>
-                                            )
-                                        })
-                                        }
+                                    // Lấy ngày của lịch khám
+                                    const dateTimestamp = +item.date; // dạng số (milliseconds)
 
-                                    </div>
-                                    <div className='book-free'>
-                                        <span>
-                                            <FormattedMessage id="patient.detail-doctor.choose" />
-                                            &nbsp;
-                                            <i className='far fa-hand-point-up'></i>
-                                            &nbsp;
-                                            <FormattedMessage id="patient.detail-doctor.book-free" /></span>
-                                    </div>
+                                    // Gộp ngày + giờ vào moment
+                                    const [hour, minute] = startTimeStr.split(':');
+                                    const scheduleMoment = moment(dateTimestamp).hour(+hour).minute(+minute || 0).second(0);
 
-                                </>
-                                : <span className='no-calendar'><i><FormattedMessage id="patient.detail-doctor.no-schedule" /></i></span>
-                            }
+                                    // Nếu đã qua giờ thì bỏ qua
+                                    if (scheduleMoment.isBefore(moment())) {
+                                        return null;
+                                    }
+
+                                    return (
+                                        <button
+                                            key={index}
+                                            disabled={isBooked}
+                                            className={isBooked ? 'booked' : ''}
+                                            onClick={() => !isBooked && this.handleClickSheduleTime(item)}
+                                            style={{
+                                                width: language === LANGUAGES.EN ? "150px" : "115px",
+                                            }}
+                                        // onClick={() => this.handleClickSheduleTime(item)}
+                                        >
+                                            {timeRange}
+                                        </button>
+                                    );
+                                })}
+                            </div>
 
                         </div>
                     </div>
@@ -202,6 +251,7 @@ class DoctorSchedule extends Component {
                     isOpenModal={isOpenModalBooking}
                     dataTime={dataScheduleTimeModal}
                     closeBookingModal={this.closeBookingModal}
+                    onBookedTime={this.handleBookedTime}
                 />
             </>
         );
@@ -210,7 +260,8 @@ class DoctorSchedule extends Component {
 
 const mapStateToProps = state => {
     return {
-        language: state.app.language
+        language: state.app.language,
+        bookedTimes: state.schedule.bookedTimes
     };
 };
 

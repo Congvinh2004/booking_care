@@ -55,10 +55,10 @@ class HomeHeader extends Component {
 
                         </div>
                         <div className='right-content'>
-                            <div className='support'>
+                            {/* <div className='support'>
                                 <i className="fas fa-question-circle"></i>
                                 <FormattedMessage id="homeheader.support" />
-                            </div>
+                            </div> */}
                             <div className='language'>
                                 <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => { this.changeLanguage(LANGUAGES.VI) }}>VI</span></div>
                                 <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => { this.changeLanguage(LANGUAGES.EN) }}>EN</span></div>
@@ -80,7 +80,7 @@ class HomeHeader extends Component {
                                 <FormattedMessage id="banner.title2" />
                             </div>
                             <div className='search'>
-                                <i className="fas fa-search"></i>
+                                <i style={{ color: "white" }} className="fas fa-search"></i>
                                 <input className='search-input' type='text'
                                     placeholder='Tìm kiếm chuyên khoa khám bệnh'
                                 />

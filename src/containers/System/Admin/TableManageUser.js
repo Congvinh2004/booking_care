@@ -3,7 +3,8 @@ import { FormattedMessage } from 'react-intl';
 import './TableManageUser.scss'
 import * as actions from "../../../store/actions"
 import { connect } from 'react-redux';
-
+import { deleteUserService } from '../../../services/userService';
+import { toast } from 'react-toastify';
 import MarkdownIt from 'markdown-it';
 import MdEditor from 'react-markdown-editor-lite';
 // import style manually
@@ -41,7 +42,25 @@ class TableManageUser extends Component {
     }
 
     handleDeleteUser = (user) => {
-        this.props.deleteUserRedux(user.id);
+        // this.props.deleteUserRedux(user.id);
+        this.props.setContentOfConfirmModal({
+            isOpen: true,
+            messageId: 'common.confirm-delete-user',
+            handleFunc: async () => {
+                try {
+                    let res = await deleteUserService(user.id);
+                    if (res && res.errCode === 0) {
+                        // await this.getAllUsersFromReact();
+                        await this.props.fetchUserRedux();
+                        toast.success('Xóa người dùng thành công!');
+                    }
+                } catch (e) {
+                    console.log(e);
+                    toast.error('Xóa người dùng thất bại!');
+                }
+            },
+            dataFunc: user
+        })
     }
 
     handleEditUser = (user) => {
@@ -110,7 +129,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchUserRedux: () => dispatch(actions.fetchAllUserStart()),
-        deleteUserRedux: (id) => dispatch(actions.deleteUser(id))
+        deleteUserRedux: (id) => dispatch(actions.deleteUser(id)),
+        setContentOfConfirmModal: (contentOfConfirmModal) => dispatch(actions.setContentOfConfirmModal(contentOfConfirmModal))
     };
 };
 

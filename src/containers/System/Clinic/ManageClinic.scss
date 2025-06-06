@@ -1,0 +1,40 @@
+.manage-specialty-container {
+    padding: 0 15px;
+
+    .manage-specialty-title {
+        text-align    : center;
+        text-transform: uppercase;
+        font-weight   : bold;
+        font-size     : 20px;
+        margin-top    : 15px;
+        color         : #0071ba;
+    }
+
+    .add-new-specialty {
+
+        .specialty-name {
+            padding: 0;
+        }
+
+        .specialty-avatar {
+            // padding: 0;
+
+        }
+    }
+
+    .rc-md-editor {
+        width: 100%;
+    }
+
+    .btn-add-specialty {
+        margin-top      : 20px;
+        margin-bottom   : 30px;
+        border-radius   : 3px;
+        outline         : none;
+        border          : none;
+        padding         : 5px;
+        background      : orange;
+        cursor          : pointer;
+        // color        : white;
+    }
+}

@@ -39,6 +39,7 @@ class OutStandingDoctor extends Component {
     render() {
         let { language } = this.props
         let arrDoctors = this.state.arrDoctors
+        console.log('check arrDoctor: ', arrDoctors)
         return (
             < div className='section-share section-outstandding-doctor' >
 

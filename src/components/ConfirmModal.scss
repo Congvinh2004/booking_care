@@ -1,36 +1,94 @@
-@import "../styles/common";
+.modern-confirm-modal {
+  .modal-content-box {
+    background    : #fff;
+    border-radius : 12px;
+    box-shadow    : 0 8px 24px rgba(0, 0, 0, 0.1);
+    padding       : 24px;
+    display       : flex;
+    flex-direction: column;
+    gap           : 16px;
+    max-width     : 400px;
+    margin        : auto;
+  }
 
-.confirm-modal {
-  &.modal-dialog {
-    @media (min-width: 766px) {
-      min-width: 650px;
+  .modal-header-modern {
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    border-bottom  : none;
+    padding-bottom : 0;
+
+    .icon-warning {
+      color       : #f4bb44;
+      font-size   : 24px;
+      margin-right: 12px;
+
+      // &::before {
+      //   content  : '⚠️';
+      //   font-size: 20px;
+      // }
     }
-  }
 
-  hr {
-    border: none;
-    border-bottom: 1px solid $border;;
-    width: 100%;
-    margin: 10px 15px 5px 15px;
-  }
+    .title {
+      font-size    : 20px;
+      font-weight  : bold;
+      flex         : 1;
+      margin-bottom: 0;
+      margin       : 0;
+    }
 
-  .btn-container {
-    margin-top: 10px;
-    .btn {
-      width: 100px;
-      &:first-child {
-        margin-right: 10px;
+    .btn-icon-close {
+      background: none;
+      border    : none;
+      font-size : 20px;
+      color     : #666;
+      cursor    : pointer;
+
+      &:hover {
+        color: #000;
       }
     }
   }
-  
-  .custom-form-group {
-    margin: 5px 0;
 
-    .custom-form-control.readonly {
-      min-height: 28px;
-      height: auto;
+  .modal-body-modern {
+    font-size    : 16px;
+    color        : #333;
+    // text-align: center;
+    padding      : 0 8px;
+  }
+
+  .modal-footer-modern {
+    display        : flex;
+    justify-content: flex-end;
+    gap            : 12px;
+    padding-top    : 8px;
+
+    .btn {
+      padding      : 8px 16px;
+      border-radius: 8px;
+      border       : none;
+      cursor       : pointer;
+      font-size    : 14px;
+      font-weight  : 600;
+      transition   : background 0.3s;
+
+      &.cancel {
+        background: #e0e0e0;
+        color     : #333;
+
+        &:hover {
+          background: #d5d5d5;
+        }
+      }
+
+      &.confirm {
+        background: #007bff;
+        color     : white;
+
+        &:hover {
+          background: #0069d9;
+        }
+      }
     }
   }
 }
-
